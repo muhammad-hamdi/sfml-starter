@@ -25,26 +25,26 @@ int main()
     // Set fps to 60
     window.setFramerateLimit(60);
 
-    // init clock for deltaTime
+    // Init clock for deltaTime
     sf::Clock deltaClock;
     while (window.isOpen())
     {
         // Calculate deltaTime
         float deltaTime = deltaClock.restart().asSeconds();
 
-        // events
+        // Event polling
         handleEvents(window);
 
+        // Update
         shape.setPosition(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y);
 
-        // Clear the canvas
-        window.clear();
+        // Render
+        window.clear(); // Clear old frame
         
-        // Do the drawing here
+        // Draw the frame
         window.draw(shape);
-
-        // Display the frame
-        window.display();
+        
+        window.display(); // Display the frame
     }
 
     return 0;
