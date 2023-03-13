@@ -17,10 +17,10 @@ int main()
     sf::RenderWindow window(sf::VideoMode(800, 600), "SFML works!");
 
     // Create a circle shape
-    sf::CircleShape shape(50.f);
+    float radius = 50;
+    sf::CircleShape shape(radius);
     shape.setFillColor(sf::Color::White);
-    sf::Vector2<float> position((window.getSize().x/2)-50.f, (window.getSize().y/2)-50.f);
-    shape.setPosition(position);
+    shape.setOrigin(radius, radius);
 
     // Set fps to 60
     window.setFramerateLimit(60);
@@ -34,6 +34,8 @@ int main()
 
         // events
         handleEvents(window);
+
+        shape.setPosition(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y);
 
         // Clear the canvas
         window.clear();

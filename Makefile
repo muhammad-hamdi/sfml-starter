@@ -1,10 +1,16 @@
-all: compile link run
+all: compile link copy_resources run
 
 compile:
-	g++ -Isrc/include -c *.cpp -o build/main.o
+	g++ -c src/*.cpp -Iinclude
 
 link:
-	g++ build/*.o -o build/game -Lsrc/lib -lsfml-graphics -lsfml-window -lsfml-system
+	g++ *.o -o build/game -Llib -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
+
+copy_resources:
+	cp -r res build
 
 run:
-	cd build && ./game.exe
+	cd build && ./game
+
+clean:
+	rm -rf *.o build/*.o build/game.exe build/res
